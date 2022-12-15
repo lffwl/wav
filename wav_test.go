@@ -19,6 +19,6 @@ func TestNewRead(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	fmt.Printf("format : %+v", w.Format())
+	fmt.Printf("format : %+v , dataLen : %d \n", w.Format(), w.GetDataLen())
 
 }

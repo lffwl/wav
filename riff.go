@@ -8,8 +8,9 @@ import (
 
 type riff struct {
 	io.ReadWriteSeeker
-	format Format
-	other  map[string][]byte
+	format  Format
+	dataLen uint32
+	other   map[string][]byte
 }
 
 func newRead(seeker io.ReadWriteSeeker) Wav {
@@ -27,6 +28,11 @@ func newRead(seeker io.ReadWriteSeeker) Wav {
 // Format output format
 func (r *riff) Format() *Format {
 	return &r.format
+}
+
+// GetDataLen output data length
+func (r *riff) GetDataLen() uint32 {
+	return r.dataLen
 }
 
 // readSizeByte
@@ -73,6 +79,7 @@ func (r *riff) parseOther() {
 		chunkId := string(r.readSizeByte(4)[:])
 		// Read the data chunk id exit for
 		if chunkId == DataChunkId {
+			r.dataLen = BytesToUint32(r.readSizeByte(4))
 			return
 		} else {
 			size := BytesToUint32(r.readSizeByte(4))

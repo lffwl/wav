@@ -5,6 +5,7 @@ import "io"
 type Wav interface {
 	io.ReadWriteSeeker
 	Format() *Format
+	GetDataLen() uint32
 }
 
 type Format struct {
