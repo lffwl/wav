@@ -21,3 +21,16 @@ func NewRead(seeker io.ReadWriteSeeker) (Wav, error) {
 
 	return w, nil
 }
+
+func NewWrite(seeker io.ReadWriteSeeker, dataLen uint32, numChannels uint16, sampleRate uint32, bitsPerSample uint16, audioFormat uint16, other ...map[string][]byte) (Wav, error) {
+
+	var w Wav
+	switch audioFormat {
+	case AudioFormatPCM:
+		w = newWrite(seeker, dataLen, numChannels, sampleRate, bitsPerSample, audioFormat, other...)
+	default:
+		return nil, errors.New("this type is not supported yet")
+	}
+
+	return w, nil
+}
