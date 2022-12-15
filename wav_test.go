@@ -22,6 +22,7 @@ func TestWav(t *testing.T) {
 	}
 
 	fmt.Printf("format : %+v , dataLen : %d \n", ww.Format(), ww.GetDataLen())
+	fmt.Printf("other : %+v ,\n", ww.GetOther())
 
 	file, err := os.Open("2.wav")
 	if err != nil {
@@ -35,5 +36,6 @@ func TestWav(t *testing.T) {
 	}
 
 	fmt.Printf("format : %+v , dataLen : %d \n", w.Format(), w.GetDataLen())
+	fmt.Printf("other : %+v ,\n", ww.GetOther())
 
 }

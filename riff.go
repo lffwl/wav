@@ -72,6 +72,11 @@ func (r *riff) GetDataLen() uint32 {
 	return r.dataLen
 }
 
+// GetOther output other chunk
+func (r *riff) GetOther() map[string][]byte {
+	return r.other
+}
+
 // writeHead
 // write wav head
 func (r *riff) writeHead() {

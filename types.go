@@ -6,6 +6,7 @@ type Wav interface {
 	io.ReadWriteSeeker
 	Format() *Format
 	GetDataLen() uint32
+	GetOther() map[string][]byte
 }
 
 type Format struct {
